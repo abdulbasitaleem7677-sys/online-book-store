@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Book Store</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+
+        /* Navbar */
+        nav {
+            background: #2c3e50;
+            padding: 15px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .cart {
+            background: #e67e22;
+            padding: 6px 12px;
+            border-radius: 5px;
+        }
+
+        /* Sections */
+        section {
+            display: none;
+            padding: 40px;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        /* Home */
+        #home {
+            text-align: center;
+        }
+
+        /* Books */
+        .books {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .book {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .book button {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .book button:hover {
+            background: #219150;
+        }
+
+        /* Contact */
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+        }
+
+        button.submit {
+            background: #2980b9;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div><strong>📚 BookStore</strong></div>
+    <div>
+        <a onclick="showSection('home')">Home</a>
+        <a onclick="showSection('books')">Books</a>
+        <a onclick="showSection('contact')">Contact</a>
+        <span class="cart">Cart: <span id="cartCount">0</span></span>
+    </div>
+</nav>
+
+<!-- Home Section -->
+<section id="home" class="active">
+    <h1>Welcome to Online Book Store</h1>
+    <p>Buy your favorite books at best prices.</p>
+</section>
+
+<!-- Books Section -->
+<section id="books">
+    <h2>Available Books</h2>
+    <div class="books">
+        <div class="book">
+            <h3>HTML & CSS</h3>
+            <p>Price: $10</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+
+        <div class="book">
+            <h3>JavaScript Basics</h3>
+            <p>Price: $15</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+
+        <div class="book">
+            <h3>Python Programming</h3>
+            <p>Price: $20</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <h2>Contact Us</h2>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <textarea rows="4" placeholder="Your Message"></textarea>
+    <button class="submit">Send Message</button>
+</section>
+
+<footer>
+    © 2025 Online Book Store
+</footer>
+
+<script>
+    let cart = 0;
+
+    function showSection(sectionId) {
+        let sections = document.querySelectorAll("section");
+        sections.forEach(section => {
+            section.classList.remove("active");
+        });
+        document.getElementById(sectionId).classList.add("active");
+    }
+
+    function addToCart() {
+        cart++;
+        document.getElementById("cartCount").innerText = cart;
+        alert("Book added to cart!");
+    }
+</script>
+
+</body>
+</html>
